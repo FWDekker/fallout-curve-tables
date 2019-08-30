@@ -1,0 +1,36 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.3.41"
+    id "application"
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8"
+    implementation group: "org.jetbrains.kotlin", name: "kotlin-reflect"
+    compile group: "com.beust", name: "jcommander", version: jcommanderVersion
+    compile group: "com.beust", name: "klaxon", version: klaxonVersion
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+application {
+    mainClassName = "com.fwdekker.falloutcurvetable.MainKt"
+}
+jar {
+    manifest {
+        attributes "Main-Class": application.mainClassName
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
