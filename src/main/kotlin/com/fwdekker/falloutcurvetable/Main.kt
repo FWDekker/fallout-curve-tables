@@ -23,10 +23,17 @@ class Args {
 
     @Parameter(
         names = ["--prefix"],
-        description = "The string that all source files should begin with.",
+        description = "The string that all source file names should begin with.",
         required = false
     )
     var prefix: String = ""
+
+    @Parameter(
+        names = ["--suffix"],
+        description = "The string that all source file names should end with, including the file extension.",
+        required = false
+    )
+    var suffix: String = ".json"
 
     @Parameter(
         names = ["--format"],
@@ -75,8 +82,8 @@ fun main(argv: Array<String>) {
 
     val source = File(args.source)
     val destination = File(args.destination)
-    val filter: ((File) -> Boolean) = { it.name.startsWith(args.prefix) && it.name.endsWith(".json") }
-    val nameExtractor: ((String) -> String) = { it.removePrefix(args.prefix).removeSuffix(".json") }
+    val filter: ((File) -> Boolean) = { it.name.startsWith(args.prefix) && it.name.endsWith(args.suffix) }
+    val nameExtractor: ((String) -> String) = { it.removePrefix(args.prefix).removeSuffix(args.suffix) }
 
     print("Processing files...")
     destination.writeText(source.let {

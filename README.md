@@ -14,7 +14,6 @@ Usage: <main class> [options]
   Options:
   * -d, --description
       The file to write output to.
-      Default: <empty string>
     --format
       The format to print each file as. `%n` for file name excluding prefix 
       and extension, `%m` for `%n` but right-padded with whitespaces so that 
@@ -23,11 +22,14 @@ Usage: <main class> [options]
     --help
       Shows this information.
     --prefix
-      The string that all source files should begin with.
+      The string that all source file names should begin with.
       Default: <empty string>
   * -s, --source
       The file or directory to read.
-      Default: <empty string>
+    --suffix
+      The string that all source file names should end with, including the 
+      file extension.
+      Default: .json
 ```
 
 ## Development
