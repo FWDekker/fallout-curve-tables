@@ -1,12 +1,12 @@
 # Fallout Curve Table
-Given a (set of) curve table files from Fallout 76, turns them into part of a MediaWiki template used on Nukapedia. Prevents typos and makes the whole process easier.
+Given a (set of) curve table files from Fallout 76, generates a format usable by the [CurveTable template](https://fallout.fandom.com/wiki/Template:CurveTable) on [Nukapedia](https://fallout.fandom.com/). Prevents typos and makes the whole process a lot easier.
 
-Curve table files are JSON files and can be extracted from the BSAs.
+Curve table files are JSON files and can be extracted from the `SeventySix - Startup.ba2` file using a tool such as [Bethesda Archive Extractor](https://www.nexusmods.com/skyrimspecialedition/mods/974).
 
 ## Usage
 1. Download the jar on [the releases page](https://github.com/FWDekker/fallout-curve-tables/releases).
 2. Open a terminal and navigate to where you downloaded the jar.
-3. Run the jar with `java -jar fallout-curve-table.jar [options]`.
+3. Run the jar with `java -jar fallout-curve-table.jar [options]`. See below for a list of options.
 
 ### Options
 ```
@@ -30,6 +30,23 @@ Usage: <main class> [options]
       The string that all source file names should end with, including the 
       file extension.
       Default: .json
+```
+
+### Example
+#### HP
+Let's say you have a directory `misc/curvetables/json/creatures/health/` containing the health curve tables for Fallout 76's creatures.
+Each filename has the format `health_<creature>.json`.
+Then the following command generates the appropriate output for the [HP template](https://fallout.fandom.com/wiki/Template:Stats_creature_FO76/HP):
+```bash
+java -jar fallout-curve-table.jar -s misc/curvetables/json/creatures/health/ -d my_output.txt --prefix "health_"
+```
+
+#### DR
+Let's say you have a directory `misc/curvetables/json/creatures/armor/` containing the damage and energy resistance curve tables for Fallout 76's creatures.
+Each filename has the format `armor_<creature>_dr.json` or `armor_<creature>_er.json`, but you're only interested in those with the former.
+Then the following command generates the appropriate output for the [DR template](https://fallout.fandom.com/wiki/Template:Stats_creature_FO76/DR):
+```bash
+java -jar fallout-curve-table.jar -s misc/curvetables/json/creatures/armor/ -d my_output.txt --prefix "armor_" --suffix "_dr.json"
 ```
 
 ## Development
