@@ -18,7 +18,7 @@ Usage: <main class> [options]
       The format to print each file as. `%n` for file name excluding prefix 
       and extension, `%m` for `%n` but right-padded with whitespaces so that 
       all names are of equal length, and `%v` for curve values.
-      Default:       -->|%m =%v<!--
+      Default:     -->|%m =%v<!--
     --help
       Shows this information.
     --prefix

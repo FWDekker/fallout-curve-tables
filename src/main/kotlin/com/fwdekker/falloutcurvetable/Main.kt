@@ -42,7 +42,7 @@ class Args {
             "and `%v` for curve values.",
         required = false
     )
-    var format: String = "      -->|%m =%v<!--"
+    var format: String = "    -->|%m =%v<!--"
 
     @Parameter(names = ["--help"], help = true, description = "Shows this information.")
     var help: Boolean = false
