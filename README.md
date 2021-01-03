@@ -12,12 +12,12 @@ Curve table files are JSON files and can be extracted from the `SeventySix - Sta
 ```
 Usage: <main class> [options]
   Options:
-  * -d, --description
+  * -d, --destination
       The file to write output to.
     --format
       The format to print each file as. `%n` for file name excluding prefix 
-      and extension, `%m` for `%n` but right-padded with whitespaces so that 
-      all names are of equal length, and `%v` for curve values.
+      and suffix, `%m` for `%n` but right-padded with whitespaces so that all 
+      names are of equal length, and `%v` for curve values.
       Default:     -->|%m =%v<!--
     --help
       Shows this information.
@@ -32,7 +32,7 @@ Usage: <main class> [options]
       Default: .json
 ```
 
-### Example
+### Examples
 #### HP
 Let's say you have a directory `misc/curvetables/json/creatures/health/` containing the health curve tables for Fallout 76's creatures.
 Each filename has the format `health_<creature>.json`.
