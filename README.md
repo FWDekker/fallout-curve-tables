@@ -62,11 +62,15 @@ java -jar fallout-curve-table.jar -s misc/curvetables/json/creatures/armor/ -d m
 ```
 
 ## Development
+### Requirements
+* JDK 11 (not newer)
+
+### Releasing
 ```bash
 gradlew runtimeZip  # Create distribution ZIPs in the `build/image/` directory
 ```
 
-### JDK downloads
+#### JDK downloads
 Compiling distributions requires access to JDKs for the target platforms.
 These JDKs are automatically downloaded to `build/jdks/`.
 This directory can be overridden with environment variable `JLINK_JDK_DIR`.
