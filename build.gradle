@@ -17,7 +17,7 @@ compileJava.destinationDir = compileKotlin.destinationDir
 compileKotlin { kotlinOptions.jvmTarget = "11" }
 
 application {
-    mainClass.set("com.fwdekker.falloutcurvetable.MainKt")
+    mainClass.set("com.fwdekker.falloutcurvetables.MainKt")
 }
 runtime {
     // Options

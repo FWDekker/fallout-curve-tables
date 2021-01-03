@@ -1,4 +1,4 @@
-package com.fwdekker.falloutcurvetable
+package com.fwdekker.falloutcurvetables
 
 import com.beust.klaxon.Klaxon
 import java.io.File
