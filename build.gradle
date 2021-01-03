@@ -1,6 +1,6 @@
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.4.21"
-    id "application"
+    id "org.beryx.runtime" version "1.12.1"
 }
 
 repositories {
@@ -9,29 +9,33 @@ repositories {
 }
 
 dependencies {
-    implementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8"
-    implementation group: "org.jetbrains.kotlin", name: "kotlin-reflect"
-
-    compile group: "com.beust", name: "jcommander", version: jcommanderVersion
-    compile group: "com.beust", name: "klaxon", version: klaxonVersion
+    implementation group: "com.beust", name: "jcommander", version: jcommanderVersion
+    implementation group: "com.beust", name: "klaxon", version: klaxonVersion
 }
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
+compileJava.destinationDir = compileKotlin.destinationDir
+compileKotlin { kotlinOptions.jvmTarget = "11" }
 
 application {
-    mainClassName = "com.fwdekker.falloutcurvetable.MainKt"
+    mainClass.set("com.fwdekker.falloutcurvetable.MainKt")
 }
-jar {
-    manifest {
-        attributes "Main-Class": application.mainClassName
-    }
+runtime {
+    // Options
+    imageZip.set(project.file("${project.buildDir}/image/falloutcurvetables.zip"))
+    options.set(["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"])
+    modules.set([])
 
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    // Targets
+    def jdkDir = System.getenv().getOrDefault("JLINK_JDK_DIR", null)
+
+    // Find latest versions at https://adoptopenjdk.net/releases.html
+    [
+        "linux-x64"  : "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.9.1_1.tar.gz",
+        "mac-x64"    : "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_mac_hotspot_11.0.9.1_1.tar.gz",
+        "windows-x64": "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_windows_hotspot_11.0.9.1_1.zip",
+    ].each { platform, jdkUrl ->
+        targetPlatform(platform) {
+            jdkHome = jdkDownload(jdkUrl) { if (jdkDir != null) downloadDir = "${jdkDir}/${platform}/" }
+        }
     }
 }
