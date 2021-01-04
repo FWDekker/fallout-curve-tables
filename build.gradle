@@ -23,7 +23,7 @@ runtime {
     // Options
     imageZip.set(project.file("${project.buildDir}/image/falloutcurvetables.zip"))
     options.set(["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"])
-    modules.set([])
+    modules.set(["java.base"])
 
     // Targets
     def jdkDir = System.getenv().getOrDefault("JLINK_JDK_DIR", null)

@@ -12,7 +12,7 @@ Curve table files are JSON files and can be extracted from the `SeventySix - Sta
    [the releases page](https://github.com/FWDekker/fallout-curve-tables/releases).
 2. Unpack the archive in any folder.
 3. Open a terminal and navigate to the `bin/` folder in the extracted archive.
-4. Run the program with `falloutcurvetable [options]` (Windows) or `./falloutcurvetable [options]` (Linux/macOS).
+4. Run the program with `falloutcurvetables [options]` (Windows) or `./falloutcurvetables [options]` (Linux/macOS).
    See below for a list of options.
 
 ### Options
