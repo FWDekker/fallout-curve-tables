@@ -1,6 +1,6 @@
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.4.21"
-    id "org.beryx.runtime" version "1.12.1"
+    id "org.jetbrains.kotlin.jvm" version "1.5.30"
+    id "org.beryx.runtime" version "1.12.5"
 }
 
 repositories {
@@ -30,9 +30,9 @@ runtime {
 
     // Find latest versions at https://adoptopenjdk.net/releases.html
     [
-        "linux-x64"  : "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.9.1_1.tar.gz",
-        "mac-x64"    : "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_mac_hotspot_11.0.9.1_1.tar.gz",
-        "windows-x64": "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_windows_hotspot_11.0.9.1_1.zip",
+        "linux-x64"  : "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.12%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.12_7.tar.gz",
+        "mac-x64"    : "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.12%2B7/OpenJDK11U-jdk_x64_windows_hotspot_11.0.12_7.zip",
+        "windows-x64": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.12%2B7/OpenJDK11U-jdk_x64_mac_hotspot_11.0.12_7.tar.gz",
     ].each { platform, jdkUrl ->
         targetPlatform(platform) {
             jdkHome = jdkDownload(jdkUrl) { if (jdkDir != null) downloadDir = "${jdkDir}/${platform}/" }

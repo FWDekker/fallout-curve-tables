@@ -69,6 +69,7 @@ java -jar fallout-curve-table.jar -s misc/curvetables/json/creatures/armor/ -d m
 ```bash
 gradlew runtimeZip  # Create distribution ZIPs in the `build/image/` directory
 ```
+You may additionally have to set the `javaHome` variable to a compatible JDK.
 
 #### JDK downloads
 Compiling distributions requires access to JDKs for the target platforms.
